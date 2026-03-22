@@ -1,0 +1,42 @@
+services:
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      # Mapeamento: PORTA_DO_LINUX:PORTA_DO_CONTAINER
+      - "${DB_PORT_HOST}:5432"
+    networks:
+      - campushare_network
+
+  backend:
+    build: ./backend
+    # O comando runserver interna usa sempre a porta 8000 do container
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/code
+    ports:
+      - "8000:8000"
+    environment:
+      SECRET_KEY: ${SECRET_KEY}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: db
+      # O Django se conecta na porta INTERNA da rede Docker
+      DB_PORT: ${DB_PORT_INTERNAL}
+    depends_on:
+      - db
+    networks:
+      - campushare_network
+
+networks:
+  campushare_network:
+    driver: bridge
+
+volumes:
+  postgres_data:

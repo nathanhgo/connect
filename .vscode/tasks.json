@@ -1,0 +1,77 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "🚀 1. Subir Infra (Docker Up)",
+            "type": "shell",
+            "command": "docker compose up -d",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "group": "build"
+        },
+        {
+            "label": "⚡ 2. Iniciar Backend (Runserver)",
+            "type": "shell",
+            "command": "docker compose up backend",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "🧱 3. Rodar Makemigrations",
+            "type": "shell",
+            "command": "docker compose exec backend python manage.py makemigrations",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "🔄 4. Rodar Migrate",
+            "type": "shell",
+            "command": "docker compose exec backend python manage.py migrate",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "👤 5. Criar SuperUser",
+            "type": "shell",
+            "command": "docker compose exec backend python manage.py createsuperuser",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "pty": true
+        },
+        {
+            "label": "📱 6. Iniciar Frontend (Expo Go)",
+            "type": "shell",
+            "command": "cd frontend && npx expo start",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "🛠️ 7. Criar Novo App Django",
+            "type": "shell",
+            "command": "docker compose exec backend python manage.py startapp ${input:appName}",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "appName",
+            "type": "promptString",
+            "description": "Nome do novo app (ex: moradias, caronas):"
+        }
+    ]
+}

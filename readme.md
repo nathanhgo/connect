@@ -2,6 +2,7 @@
 
 > **Beyond the Campus.** A community-driven mobile platform connecting university students to solve the housing bureaucracy and daily commuting challenges through smart, peer-to-peer sharing.
 
+
 ### 💡 About the Project
 **Connect** is an academic extension project designed to modernize how students handle their logistical and socio-economic barriers. Its mission is to reduce evasion rates by optimizing the academic community's own resources—matching those who need a ride or a room with those who can offer it.
 

@@ -1,4 +1,4 @@
-# Mapa de Navegação - CampusLink 🗺️
+# Mapa de Navegação
 
 Esse diagrama é um rascunho, focado em ilustrar o fluxo de telas e navegação do aplicativo mobile (React Native).
 

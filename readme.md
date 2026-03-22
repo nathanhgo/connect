@@ -54,7 +54,7 @@ The system operates in a decoupled pipeline designed for rapid development and U
 1. **Clone the repository**
 ```bash
 git clone [https://github.com/your-username/campushare.git](https://github.com/your-username/campushare.git)
-cd campushare
+cd connect
 ```
 
 2. **Environment Setup**
@@ -72,13 +72,11 @@ This project includes automated VS Code tasks for a frictionless developer exper
 
 - Run 🔄 4. Django: Migrate to build the database schema.
 
-4. **Start the Mobile Client**
-Open a new terminal session in the frontend directory:
-```bash
-cd frontend
-npm install
-npx expo start
-```
+- Run ⚡ 2. Iniciar Backend (Runserver)
+
+- Run 📱 6. Iniciar Frontend (Expo Go) to spin up the React Native client.
+
+
 - Web: Press w to open in your browser.
 
 - Mobile: Scan the QR code using the Expo Go app on your device (ensure both are on the same Wi-Fi network).

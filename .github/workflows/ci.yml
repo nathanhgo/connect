@@ -1,0 +1,35 @@
+name: Integracao Continua (CI)
+
+# O CI vai rodar toda vez que alguém abrir um Pull Request para a main
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  testes-backend:
+    name: 🧪 Testes do Django
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Clonar o repositório
+      uses: actions/checkout@v4
+
+    - name: ⚙️ Configurar variáveis de ambiente (.env)
+      run: |
+        echo "SECRET_KEY=chave_secreta_ci_github" >> .env
+        echo "DB_NAME=connect_db" >> .env
+        echo "DB_USER=admin" >> .env
+        echo "DB_PASSWORD=senha123" >> .env
+        echo "DB_PORT_HOST=5432" >> .env
+        echo "DB_PORT_INTERNAL=5432" >> .env
+        echo "DB_HOST=db" >> .env
+
+    - name: 🐳 Iniciar Banco de Dados e Backend
+      run: docker compose up -d db backend
+
+    - name: ⏳ Aguardar o banco de dados ficar pronto
+      run: sleep 10
+
+    - name: ✅ Executar Testes Unitários
+      # Usamos 'run --rm' em vez de 'exec' porque o CI não tem um terminal interativo
+      run: docker compose run --rm backend python manage.py test

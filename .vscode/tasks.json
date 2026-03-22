@@ -51,7 +51,7 @@
         {
             "label": "📱 6. Iniciar Frontend (Expo Go)",
             "type": "shell",
-            "command": "cd frontend && npx expo start",
+            "command": "cd frontend && npm install && npx expo start",
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated"
@@ -61,6 +61,15 @@
             "label": "🛠️ 7. Criar Novo App Django",
             "type": "shell",
             "command": "docker compose exec backend python manage.py startapp ${input:appName}",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "🛠️ 8. Testar API completa",
+            "type": "shell",
+            "command": "docker compose exec backend python manage.py test",
             "presentation": {
                 "reveal": "always",
                 "panel": "shared"

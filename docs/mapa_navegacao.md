@@ -1,6 +1,7 @@
 # Mapa de Navegação - CampusLink 🗺️
 
-This diagram is a sketch, focused on illustrating the screen flow and navigation architecture of the mobile application (React Native).
+Esse diagrama é um rascunho, focado em ilustrar o fluxo de telas e navegação do aplicativo mobile (React Native).
+
 
 
 ```mermaid
